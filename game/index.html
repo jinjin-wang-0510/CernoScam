@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reverse Cyber Detective</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app" class="game">
+
+  <!-- HUD -->
+  <header class="hud card">
+    <div class="hud-top">
+      <div>
+        <div class="eyebrow">Reverse Cyber Detective</div>
+        <div class="rank"><span id="rank">Rookie</span> <span class="lvlchip">Lv <b id="lvl">1</b></span></div>
+      </div>
+      <div class="hud-stats">
+        <div><b id="cases">0</b><span>Cases</span></div>
+        <div><b id="streak">0</b><span>Streak</span></div>
+      </div>
+    </div>
+    <div class="xpbar"><div id="xpFill"></div></div>
+    <div class="xptext" id="xpText">0 / 100 XP</div>
+  </header>
+
+  <!-- Controls -->
+  <section class="controls card">
+    <label for="typeSel" class="lbl">Scam type to investigate</label>
+    <div class="ctl-row">
+      <select id="typeSel" aria-label="Scam type"></select>
+      <button id="newBtn" class="btn primary">New case</button>
+    </div>
+  </section>
+
+  <!-- Case file -->
+  <section id="case" class="case card">
+    <div class="case-head">
+      <div>
+        <div class="caseno" id="caseNo">Case #0001</div>
+        <div class="casetitle" id="caseTitle"></div>
+      </div>
+      <span class="chan" id="channel">EMAIL</span>
+    </div>
+
+    <div class="howto">Tap every phrase that gives the scam away. Tapping ordinary text costs XP.</div>
+
+    <div id="feedback" class="feedback"></div>
+
+    <div id="msg" class="msg"></div>
+
+    <div class="progress">
+      <span>Clues found <b id="found">0</b> / <b id="total">0</b></span>
+      <span>Wrong flags <b id="wrongN">0</b></span>
+    </div>
+
+    <div class="actions">
+      <button id="hintBtn" class="btn">Hint (-5 XP)</button>
+      <button id="closeBtn" class="btn">Close case</button>
+    </div>
+  </section>
+
+  <!-- Review -->
+  <section id="review" class="review card hidden"></section>
+
+  <footer class="foot">
+    All cases are fictional training scenarios generated on the fly.
+    <button id="resetBtn" class="linkbtn">Reset progress</button>
+  </footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

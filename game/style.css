@@ -1,0 +1,708 @@
+/* Reverse Cyber Detective — CernoScam palette */
+
+:root {
+  --page: #69868c;
+  --text: #e1f5ed;
+  --muted: #b9d2ca;
+  --card: #69868c;
+  --card-2: #26393d;
+  --line: #46646a;
+  --ink: #1c2e31;
+  --good: #9fd8a6;
+  --bad: #f4a29a;
+  --warn: #f0c27a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--page);
+}
+
+body {
+  background: var(--page);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 2px 2px 14px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Main cards blend into the page background */
+.card {
+  background: var(--page);
+  border: 1px solid rgba(225, 245, 237, 0.2);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: none;
+}
+
+/* ---------- HUD ---------- */
+
+.hud-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rank {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: 2px;
+}
+
+.lvlchip {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  vertical-align: middle;
+  background: var(--text);
+  color: var(--ink);
+}
+
+.hud-stats {
+  display: flex;
+  gap: 8px;
+}
+
+/* Intentional dark teal: small stat boxes only */
+.hud-stats div {
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 5px 10px;
+  text-align: center;
+  min-width: 56px;
+}
+
+.hud-stats b {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.hud-stats span {
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Small dark teal progress bar */
+.xpbar {
+  height: 8px;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+#xpFill {
+  height: 100%;
+  width: 0;
+  background: var(--text);
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+.xptext {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* ---------- Controls ---------- */
+
+.lbl {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.ctl-row {
+  display: flex;
+  gap: 8px;
+}
+
+select {
+  flex: 1;
+  min-width: 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--card-2);
+  color: var(--text);
+  font: inherit;
+}
+
+.btn {
+  border: 1px solid rgba(225, 245, 237, 0.35);
+  background: transparent;
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn:hover:not(:disabled) {
+  background: rgba(38, 57, 61, 0.35);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.btn.primary {
+  background: #c5dfb5;
+  color: var(--ink);
+  border-color: #c5dfb5;
+  font-weight: 700;
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: #d8eacb;
+  border-color: #d8eacb;
+}
+
+.btn.block {
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* ---------- Case ---------- */
+
+.case-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.caseno {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.casetitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.chan {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--text);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.howto {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+/* Intentional dark teal: compact feedback box */
+.feedback {
+  min-height: 40px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.feedback.ok {
+  border-color: var(--good);
+  color: var(--text);
+  background: rgba(38, 57, 61, 0.75);
+}
+
+.feedback.bad {
+  border-color: var(--bad);
+  color: var(--text);
+  background: rgba(38, 57, 61, 0.75);
+}
+
+/* Intentional dark teal: message being investigated */
+.msg {
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  word-break: break-word;
+}
+
+.hdr {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  padding: 2px 0;
+  font-size: 0.82rem;
+}
+
+.row .k {
+  flex: 0 0 74px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.row .v {
+  flex: 1;
+  min-width: 0;
+}
+
+.body {
+  white-space: pre-wrap;
+}
+
+.para {
+  line-height: 1.6;
+}
+
+/* Tappable segments */
+
+.seg {
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 1px 0;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  border-bottom: 1px dotted rgba(225, 245, 237, 0.35);
+  transition: background 0.15s;
+}
+
+.seg:hover,
+.seg:focus-visible {
+  background: rgba(225, 245, 237, 0.16);
+  outline: none;
+}
+
+.seg.ok {
+  background: rgba(159, 216, 166, 0.28);
+  border-bottom: 2px solid var(--good);
+  cursor: default;
+}
+
+.seg.bad {
+  background: rgba(244, 162, 154, 0.16);
+  text-decoration: line-through dotted var(--bad);
+  cursor: default;
+}
+
+.seg.missed {
+  outline: 2px dashed var(--warn);
+  outline-offset: 1px;
+  background: rgba(240, 194, 122, 0.14);
+}
+
+.seg.hint {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    background: rgba(225, 245, 237, 0.08);
+  }
+  50% {
+    background: rgba(240, 194, 122, 0.45);
+  }
+}
+
+.tagc {
+  display: inline-block;
+  margin: 0 3px;
+  padding: 0 6px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  background: var(--good);
+  color: var(--ink);
+  vertical-align: super;
+}
+
+.note-text {
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ---------- Channel styles ---------- */
+
+.ch-sms .body,
+.ch-chat .body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  white-space: normal;
+}
+
+/* Chat bubbles are a subtle accent, not full dark cards */
+.bubble {
+  background: rgba(38, 57, 61, 0.42);
+  border: 1px solid rgba(225, 245, 237, 0.12);
+  border-radius: 16px 16px 16px 4px;
+  padding: 9px 12px;
+  max-width: 94%;
+}
+
+.ch-call .body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  white-space: normal;
+}
+
+.line {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.who {
+  flex: 0 0 56px;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.line.note .txt {
+  color: var(--muted);
+}
+
+.line .txt {
+  flex: 1;
+  min-width: 0;
+}
+
+.ch-web .body,
+.ch-web .hdr {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+}
+
+.ch-web .body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  white-space: normal;
+}
+
+.field {
+  white-space: pre-wrap;
+}
+
+.fk {
+  color: var(--muted);
+}
+
+.progress {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.progress b {
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.actions .btn {
+  flex: 1;
+}
+
+/* ---------- Review ---------- */
+
+.levelup {
+  background: var(--text);
+  color: var(--ink);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.rv-head {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.rv-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* Intentional dark teal: review statistic boxes */
+.rv-stat {
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+
+.rv-v {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.rv-l {
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Review items blend into the page */
+.rv-item {
+  border: 1px solid rgba(225, 245, 237, 0.22);
+  border-left: 4px solid var(--good);
+  border-radius: 12px;
+  padding: 9px 11px;
+  background: transparent;
+}
+
+.rv-item.miss {
+  border-left-color: var(--warn);
+}
+
+.rv-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.pill {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--text);
+  color: var(--text);
+}
+
+.rv-status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--good);
+}
+
+.rv-item.miss .rv-status {
+  color: var(--warn);
+}
+
+/* Tiny darkest-teal quote boxes */
+.rv-q {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  background: #1f3033;
+  border-radius: 8px;
+  padding: 5px 8px;
+  margin: 4px 0;
+  word-break: break-word;
+}
+
+.rv-why {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.rv-oob {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(225, 245, 237, 0.35);
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.foot {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--muted);
+  padding: 4px 8px;
+}
+
+.linkbtn {
+  display: block;
+  margin: 6px auto 0;
+  background: none;
+  border: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.72rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- Small-screen adjustments ---------- */
+
+@media (max-width: 380px) {
+  .card {
+    padding: 11px;
+    border-radius: 15px;
+  }
+
+  .hud-top {
+    flex-wrap: wrap;
+  }
+
+  .hud-stats {
+    gap: 6px;
+  }
+
+  .hud-stats div {
+    min-width: 50px;
+    padding: 5px 7px;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+  }
+
+  .actions .btn {
+    min-width: 100px;
+  }
+}
+
+
+/* Allow the game to use its full content height */
+html,
+body {
+    width: 100%;
+    height: auto !important;
+    min-height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto !important;
+}
+
+#app {
+    width: 100%;
+    height: auto !important;
+    min-height: 0;
+    overflow: visible !important;
+}
+
+.game,
+.card,
+.case,
+.review {
+    max-width: 100%;
+    min-width: 0;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Keep controls within the available mobile width */
+.ctl-row,
+.actions,
+.hud-top {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.ctl-row > *,
+.actions > * {
+    min-width: 0;
+    max-width: 100%;
+}
+
+@media (max-width: 500px) {
+    .game {
+        padding: 2px 0 16px;
+        gap: 12px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    .msg {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .actions {
+        flex-wrap: wrap;
+    }
+
+    .actions .btn {
+        flex: 1 1 100%;
+        min-width: 0;
+        white-space: normal;
+    }
+}
