@@ -1,8 +1,3 @@
-/* =========================================================
-   Reverse Cyber Detective
-   Procedurally generated, fictional scam cases. Everything here is
-   display-only training content: no real brands, no working payloads.
-   ========================================================= */
 'use strict';
  
 // ---------- small helpers ----------

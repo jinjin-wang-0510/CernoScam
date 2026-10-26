@@ -1,4 +1,3 @@
-
 import os
 import re
 import json
@@ -12,10 +11,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-# ----------------------------------------------------------------------------
 # CONFIG
-# ----------------------------------------------------------------------------
 APP_NAME = "CernoScam"
 
 st.set_page_config(
@@ -26,9 +22,7 @@ st.set_page_config(
 )
 
 
-# ----------------------------------------------------------------------------
 # STYLE
-# ----------------------------------------------------------------------------
 
 def inject_css():
     st.markdown(
@@ -64,40 +58,40 @@ def inject_css():
             box-sizing: border-box;
         }
 
-html,
-body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100%;
-    min-height: 100%;
-    height: auto !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    background: var(--page) !important;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont,
-                 'Segoe UI', sans-serif !important;
-}
+        html,
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+            min-height: 100%;
+            height: auto !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            background: var(--page) !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont,
+                         'Segoe UI', sans-serif !important;
+        }
 
-.stApp,
-[data-testid="stAppViewContainer"],
-[data-testid="stMain"],
-[data-testid="stMainBlockContainer"] {
-    height: auto !important;
-    min-height: 100vh !important;
-    max-height: none !important;
-    overflow: visible !important;
-    background: var(--page) !important;
-    color: var(--text);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont,
-                 'Segoe UI', sans-serif !important;
-}
+        .stApp,
+        [data-testid="stAppViewContainer"],
+        [data-testid="stMain"],
+        [data-testid="stMainBlockContainer"] {
+            height: auto !important;
+            min-height: 100vh !important;
+            max-height: none !important;
+            overflow: visible !important;
+            background: var(--page) !important;
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont,
+                         'Segoe UI', sans-serif !important;
+        }
 
-[data-testid="stMain"] > div {
-    height: auto !important;
-    min-height: 100vh !important;
-    max-height: none !important;
-    overflow: visible !important;
-}
+        [data-testid="stMain"] > div {
+            height: auto !important;
+            min-height: 100vh !important;
+            max-height: none !important;
+            overflow: visible !important;
+        }
 
         /* Hide Streamlit chrome */
         header[data-testid="stHeader"],
@@ -133,45 +127,46 @@ body {
         ========================================================= */
 
         div.block-container,
-[data-testid="stMainBlockContainer"] {
-    position: relative;
-    display: block;
+        [data-testid="stMainBlockContainer"] {
+            position: relative;
+            display: block;
 
-    max-width: 430px !important;
-    width: 100% !important;
+            max-width: 430px !important;
+            width: 100% !important;
 
-    height: auto !important;
-    min-height: 100vh !important;
-    max-height: none !important;
+            height: auto !important;
+            min-height: 100vh !important;
+            max-height: none !important;
 
-    margin: 20px auto !important;
-    padding: 48px 16px 40px !important;
+            margin: 20px auto !important;
+            padding: 48px 16px 40px !important;
 
-    overflow: visible !important;
-    overscroll-behavior-y: auto;
+            overflow: visible !important;
+            overscroll-behavior-y: auto;
 
-    border: 13px solid transparent;
-    border-radius: 52px;
+            border: 13px solid transparent;
+            border-radius: 52px;
 
-    background:
-        linear-gradient(var(--page), var(--page)) padding-box,
-        linear-gradient(
-            145deg,
-            #7a969c 0%,
-            #46646a 20%,
-            #1c2e31 45%,
-            #26393d 62%,
-            #69868c 82%,
-            #1f3033 100%
-        ) border-box;
+            background:
+                linear-gradient(var(--page), var(--page)) padding-box,
+                linear-gradient(
+                    145deg,
+                    #7a969c 0%,
+                    #46646a 20%,
+                    #1c2e31 45%,
+                    #26393d 62%,
+                    #69868c 82%,
+                    #1f3033 100%
+                ) border-box;
 
-    box-shadow:
-        inset 0 0 0 2px #091011,
-        0 0 0 1.5px #92b0b5,
-        0 0 0 3px #182427,
-        0 28px 60px rgba(12, 23, 25, 0.4),
-        0 6px 14px rgba(12, 23, 25, 0.25);
-}
+            box-shadow:
+                inset 0 0 0 2px #091011,
+                0 0 0 1.5px #92b0b5,
+                0 0 0 3px #182427,
+                0 28px 60px rgba(12, 23, 25, 0.4),
+                0 6px 14px rgba(12, 23, 25, 0.25);
+        }
+
         /* =========================================================
            TYPOGRAPHY
         ========================================================= */
@@ -1069,6 +1064,7 @@ body {
         unsafe_allow_html=True,
     )
 
+
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 MODEL_NAME = "gemini-3.5-flash-lite"
 
@@ -1129,6 +1125,7 @@ def esc(value) -> str:
     """HTML-escape any text that came from the user or the AI before putting it in markup."""
     return _html.escape(str(value), quote=True)
 
+
 # GEMINI
 def get_client():
     from google import genai
@@ -1145,7 +1142,6 @@ def analyze_image(image: Image.Image):
         config=types.GenerateContentConfig(response_mime_type="application/json"),
     )
     return response.text
-
 
 
 # OUT-OF-BAND PLAYBOOKS (built-in fallbacks, used when the AI omits or garbles its own)
@@ -1380,9 +1376,7 @@ def default_result(reason: str):
     }
 
 
-# ----------------------------------------------------------------------------
-# URL HEURISTICS
-# ----------------------------------------------------------------------------
+# URL RULES OF THUMB
 SUSPICIOUS_TLDS = {".xyz", ".info", ".top", ".club", ".click", ".gq", ".tk", ".ml", ".cf", ".support", ".help", ".shop", ".online", ".site", ".link", ".live"}
 BRAND_HINTS = ["bank", "paypal", "amazon", "google", "microsoft", "apple", "kyc", "verify", "secure", "delivery", "gov",
                "turnpike", "ezpass", "duquesne", "usps", "fedex", "irs"]
@@ -1495,14 +1489,15 @@ def analyze_offline(text: str):
 
 # PRIVATE PYTHON RULE-BASED ANALYSIS
 def analyze_on_device(text: str):
-        """Analyze text using built-in Python rules without a model or network."""
-        result = analyze_offline(text)
-        result["engine"] = "built-in Python rules"
-        result["private"] = True
-        return result
-# ----------------------------------------------------------------------------
+    """Analyze text using built-in Python rules without a model or network."""
+    result = analyze_offline(text)
+    result["engine"] = "built-in Python rules"
+    result["private"] = True
+    return result
+
+
 # UI COMPONENTS
-# ----------------------------------------------------------------------------
+
 def pill(label: str, color: str) -> str:
     return (
         f'<span class="pill" style="color:{color};background:{color}26;'
@@ -1771,9 +1766,8 @@ def render_scanner_tab():
         render_empty_state()
 
 
-# ----------------------------------------------------------------------------
 # GAME TAB
-# ----------------------------------------------------------------------------
+
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -1881,9 +1875,7 @@ def render_game_tab():
     components.html(game_html, height=600, scrolling=True)
 
 
-# ----------------------------------------------------------------------------
 # MAIN
-# ----------------------------------------------------------------------------
 def main():
     inject_css()
 
@@ -1901,7 +1893,6 @@ def main():
 
     with game_tab:
         render_game_tab()
-
 
 
 if __name__ == "__main__":
